@@ -68,8 +68,8 @@ func (m *InteractionMux) Serve() func(s *discordgo.Session, i *discordgo.Interac
 		// 3 second timeout for an inital response.
 		ctx, cancel := context.WithTimeout(ctx, time.Second*3)
 		request := &InteractionRequest{
-			session:     s,
-			interaction: i,
+			Session:     s,
+			Interaction: i,
 			Context:     ctx,
 		}
 
@@ -93,7 +93,7 @@ func (m *InteractionMux) Serve() func(s *discordgo.Session, i *discordgo.Interac
 func Respond(response *discordgo.InteractionResponse, request *InteractionRequest) {
 
 	// send the response
-	err := request.session.InteractionRespond(request.interaction.Interaction, response)
+	err := request.Session.InteractionRespond(request.Interaction.Interaction, response)
 	if err != nil {
 		log.Ctx(request.Context).UpdateContext(func(c zerolog.Context) zerolog.Context {
 			return c.AnErr("discord", err)
@@ -107,7 +107,7 @@ func (i *InteractionMux) notFoundHandler(response *discordgo.InteractionResponse
 
 		c := fmt.Sprintf(
 			"command (%s) not found.",
-			request.interaction.ApplicationCommandData().Name,
+			request.Interaction.ApplicationCommandData().Name,
 		)
 
 		response = &discordgo.InteractionResponse{

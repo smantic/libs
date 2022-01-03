@@ -7,8 +7,8 @@ import (
 )
 
 type InteractionRequest struct {
-	session     *discordgo.Session
-	interaction *discordgo.InteractionCreate
+	Session     *discordgo.Session
+	Interaction *discordgo.InteractionCreate
 	Context     context.Context
 }
 
