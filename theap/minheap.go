@@ -49,14 +49,18 @@ func (m *MinHeap) up(n *Node) {
 
 // down will bouble a node down if it should
 func (m *MinHeap) down(n *Node) {
-	for n.left != nil && n.right != nil {
-		if n.Value < n.left.Value {
+	for n != nil {
+		if n.left == nil {
+			return
+		}
+
+		if n.Value > n.left && n.left <= n.right {
 			swap(n, n.left)
 			n = n.left
-			continue
 		}
-		if n.right != nil {
-
+		if n.right != nil && n.Value > n.right && n.right < n.left {
+			swap(n, n.right)
+			n = n.right
 		}
 	}
 }
