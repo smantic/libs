@@ -25,9 +25,25 @@ func (m *MinHeap) Push(node *Node) {
 }
 
 func (m *MinHeap) Pop() *Node {
+	hd := m.hd
 	last := find(m.hd, m.NumElems)
-	_ = last
-	return nil
+	parent := last.parent
+
+	if parent.left == last {
+		parent.left = nil
+	}
+	if parent.right == last {
+		parent.right = nil
+	}
+
+	last.parent = nil
+	last.left = hd.left
+	last.right = hd.right
+	m.hd = last
+
+	m.down(last)
+
+	return hd
 }
 
 // Peek will return the top of the heap.
