@@ -1,6 +1,4 @@
-// package recoverer offers a recovery middleware that will
-// output a structured log line (zap) log for panics.
-package recoverer
+package handlers
 
 import (
 	"net/http"
