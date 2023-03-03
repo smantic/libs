@@ -1,4 +1,4 @@
-module go.smantic.dev/handlers
+module go.smantic.dev/libs/handlers
 
 go 1.18
 
