@@ -1,4 +1,4 @@
-package recoverer
+package handlers
 
 import (
 	"net/http"

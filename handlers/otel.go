@@ -1,4 +1,4 @@
-package zmwl
+package handlers
 
 import "net/http"
 
