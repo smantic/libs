@@ -14,9 +14,13 @@ type ZapMiddleware struct {
 }
 
 func NewZapMiddleware(l *zap.Logger, otel otelAdapter) ZapMiddleware {
+	if otel == nil {
+		otel = &emptyOtelAdapter{}
+	}
 
 	return ZapMiddleware{
 		logger: l,
+		otel:   otel,
 	}
 }
 
